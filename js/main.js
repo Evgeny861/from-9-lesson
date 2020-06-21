@@ -84,11 +84,11 @@ console.log(expensesAmount);
 
 const depositAmount = document.querySelector('.deposit-amount');
 
-console.log(depositAmount);
+(depositAmount);
 
 const depositPercent = document.querySelector('.deposit-percent');
 
-console.log(depositPercent);
+  (depositPercent);
 
 const additionalExpensesItem = document.querySelector('.additional_expenses-item');
 
