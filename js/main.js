@@ -16,8 +16,8 @@ let start = document.getElementById('start'),
     incomePeriodValue = result.getElementsByClassName('income_period-value')[0],
     targetMonthValue = result.getElementsByClassName('target_month-value')[0],
     salaryAmount = document.querySelector('.salary-amount'),
-    incomeItems = document.querySelector('.income-items'),
-    incomeTitle = incomeItems.querySelector('.income-title'),
+    incomeItems = document.querySelectorAll('.income-items'),
+    incomeTitle = document.querySelector('.income-title'),
     incomeAmount = document.querySelector('.income-amount'),
     additionalIncomeData1 = document.querySelectorAll('.additional_income-item')[0],
     additionalIncomeData2 = document.querySelectorAll('.additional_income-item')[1],
@@ -29,6 +29,7 @@ let start = document.getElementById('start'),
     additionalExpensesItem = document.querySelector('.additional_expenses-item'),
     targetAmount = document.querySelector('.target-amount'),
     periodSelect = document.querySelector('.period-select');
+
 
 
 
@@ -96,22 +97,13 @@ let start = document.getElementById('start'),
             });
         },
         getIncome: function(){
-            if(confirm('Есть ли у вас дополнительный заработок?')){
-            let itemIncome ;
-            let cashIncome ;
-            do {
-            itemIncome = prompt(' Какой у вас есть дополнительный заработок?', 'такси');
-            }
-            while(!isString(itemIncome));
-            
-            do {
-                cashIncome  = prompt('Сколько в месяц вы зарабатываете на этом?', 10000);
-                }
-            while (!isNumber(cashIncome));
-            appData.income[itemIncome] = cashIncome;
-            }
-            
-
+            incomeItems.forEach(function(item){
+            let itemIncome = incomeTitle.value;
+            let cashIncome = incomeAmount.value;
+            if(itemIncome !== '' && cashIncome !== ''){
+                appData.income[itemIncome] = cashIncome;
+            }           
+            });
             for(let key in appData.income){
                 appData.incomeMonth += +appData.income[key];
             }
