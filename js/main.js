@@ -79,12 +79,21 @@ let start = document.getElementById('start'),
             incomePeriodValue.value =  appData.calcSaveMoney();
         },
         addExpensesBlock: function(){        
-            let cloneExpensesItem = expensesItem[0].cloneNode(true);
+            let cloneExpensesItem = expensesItem[0].cloneNode(true);            
             expensesItem[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
-            expensesItem = document.querySelectorAll('.expenses-items');
+            expensesItem = document.querySelectorAll('.expenses-items');            
             if(expensesItem.length === 3){
                 expensesPlus.style.display = 'none';
             }
+        },
+        addIncomeBlock: function(){
+            let cloneIncomeItem = incomeItems[0].cloneNode(true);            
+            incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);            
+            incomeItems = document.querySelectorAll('.income-items');            
+            if(incomeItems.length === 3){
+                incomePlus.style.display = 'none';
+            }
+            
         },
         getExpenses: function(){
             expensesItem.forEach(function(item){
@@ -180,8 +189,9 @@ let start = document.getElementById('start'),
         
         start.addEventListener('click', appData.start);
 
-
+        incomePlus.addEventListener('click', appData.addIncomeBlock);
         expensesPlus.addEventListener('click', appData.addExpensesBlock);
+
         // for (let key in appData) {
         //console.log(`Наша программа включает в себя данные: ${key} : ${appData[key]}`);
     // }
