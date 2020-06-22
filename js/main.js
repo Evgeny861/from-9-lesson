@@ -10,11 +10,11 @@ const buttonPlus = data.getElementsByTagName('button');
 
 console.log(buttonPlus);
 
-const checkbox = document.querySelector('#deposit-check');
+const depositCheck = document.querySelector('#deposit-check');
 
-console.log(checkbox);
+console.log(depositCheck);
 
-const incomeItem = document.querySelectorAll('additional_income-item');
+const incomeItem = document.querySelectorAll('.additional_income-item');
 
 console.log(incomeItem);
 
