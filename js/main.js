@@ -28,7 +28,8 @@ let start = document.getElementById('start'),
     depositPercent = document.querySelector('.deposit-percent'),
     additionalExpensesItem = document.querySelector('.additional_expenses-item'),
     targetAmount = document.querySelector('.target-amount'),
-    periodSelect = document.querySelector('.period-select');
+    periodSelect = document.querySelector('.period-select'),
+    expensesAmountValue = document.querySelector('.expenses-amount');
 
 
 
