@@ -99,17 +99,19 @@ let start = document.getElementById('start'),
         getExpenses: function(){
             expensesItem.forEach(function(item){
                 let itemExpenses = item.querySelector('.expenses-title').value;
-                let cashExpenses = item.querySelector('.expenses-amount').value;
+                let cashExpenses = +item.querySelector('.expenses-amount').value;
                 if(itemExpenses !== '' && cashExpenses !== ''){
                     appData.expenses[itemExpenses] = cashExpenses;
                 }     
+                
+                
                 
             });
         },
         getIncome: function(){
             incomeItems.forEach(function(item){
-            let itemIncome = incomeTitle.value;
-            let cashIncome = incomeAmount.value;
+            let itemIncome = item.querySelector('.income-title').value;
+            let cashIncome = +item.querySelector('.income-amount').value;
             if(itemIncome !== '' && cashIncome !== ''){
                 appData.income[itemIncome] = cashIncome;
             }           
@@ -117,6 +119,7 @@ let start = document.getElementById('start'),
             for(let key in appData.income){
                 appData.incomeMonth += +appData.income[key];
             }
+            
             
             
         },
@@ -150,7 +153,7 @@ let start = document.getElementById('start'),
             },
         getBudget: function () {
                     appData.budgetMonth = +appData.budget + appData.incomeMonth - +appData.expensesMonth;
-                    appData.budgetDay = +appData.budgetMonth / 30;
+                    appData.budgetDay = Math.ceil(+appData.budgetMonth / 30);
                     
                     return  Number(appData.budget) - Number(appData.expensesMonth);
                     
