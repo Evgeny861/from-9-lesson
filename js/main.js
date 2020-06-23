@@ -29,12 +29,8 @@ let start = document.getElementById('start'),
     additionalExpensesItem = document.querySelector('.additional_expenses-item'),
     targetAmount = document.querySelector('.target-amount'),
     periodSelect = document.querySelector('.period-select'),
-    expensesAmountValue = document.querySelector('.expenses-amount');
-
-
-
-
-
+    expensesAmountValue = document.querySelector('.expenses-amount');    
+    
 
 
     let isNumber = function(n) {
@@ -57,11 +53,10 @@ let start = document.getElementById('start'),
         period: 3,
         start: function(){
             if(salaryAmount.value === ''){
-                alert('Ошибка, поле "Месячный доход должно быть заполнено!');
+                start.setAttribute("disabled", "disabled");
                 return;
             }
             appData.budget = +salaryAmount.value;
-            
             appData.getExpenses();
             appData.getIncome();
             appData.getExpensesMonth();
@@ -78,6 +73,7 @@ let start = document.getElementById('start'),
             additionalIncomeValue.value = appData.addIncome.join(',');
             targetMonthValue.value = Math.ceil(appData.getTargetMonth());
             incomePeriodValue.value =  appData.calcSaveMoney();
+            
         },
         addExpensesBlock: function(){        
             let cloneExpensesItem = expensesItem[0].cloneNode(true);            
@@ -103,9 +99,6 @@ let start = document.getElementById('start'),
                 if(itemExpenses !== '' && cashExpenses !== ''){
                     appData.expenses[itemExpenses] = cashExpenses;
                 }     
-                
-                
-                
             });
         },
         getIncome: function(){
@@ -119,9 +112,6 @@ let start = document.getElementById('start'),
             for(let key in appData.income){
                 appData.incomeMonth += +appData.income[key];
             }
-            
-            
-            
         },
         getAddExpenses: function(){
             let addExpenses = additionalExpensesItem.value.split(',');
@@ -145,7 +135,6 @@ let start = document.getElementById('start'),
             budgetMonth: 0,
           //  считает сумму обязательных рассходов
         getExpensesMonth:  function() {
-
                 for (let key in appData.expenses) {
                     appData.expensesMonth += +(appData.expenses[key]);
                 }
@@ -188,9 +177,15 @@ let start = document.getElementById('start'),
         calcSaveMoney: function(){
           return appData.budgetMonth * periodSelect.value;
         },
+        getCounterPeriod: function(){
+                let periodAmount = document.querySelector('.period-amount');
+                periodAmount.textContent = periodSelect.value;
+                appData.showResult();
+            
+        },
         };
-        //console.log(appData.start);
-        
+        periodSelect.addEventListener('input', appData.getCounterPeriod);
+
         start.addEventListener('click', appData.start);
 
         incomePlus.addEventListener('click', appData.addIncomeBlock);
@@ -198,12 +193,6 @@ let start = document.getElementById('start'),
 
         
         
-        let range = function(){
-            let periodAmount = document.querySelector('.period-amount');
-        periodAmount.textContent = this.value;
-            
-        };
-        periodSelect.addEventListener('input', range);
         
         // for (let key in appData) {
         //console.log(`Наша программа включает в себя данные: ${key} : ${appData[key]}`);
