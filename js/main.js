@@ -52,11 +52,9 @@ let start = document.getElementById('start'),
         moneyDeposit:0,
         period: 3,
         start: function(){
-            if(salaryAmount.value === ''){
-                start.setAttribute("disabled", "disabled");
-                return;
-            }
+            
             appData.budget = +salaryAmount.value;
+            appData.checkSalaryAmount();
             appData.getExpenses();
             appData.getIncome();
             appData.getExpensesMonth();
@@ -183,9 +181,16 @@ let start = document.getElementById('start'),
                 appData.showResult();
             
         },
+        checkSalaryAmount: function(){
+            if(salaryAmount.value === ''){
+                start.setAttribute("disabled", "disabled");
+            }else {
+                start.removeAttribute("disabled");
+            }
+        },
         };
         periodSelect.addEventListener('input', appData.getCounterPeriod);
-
+        salaryAmount.addEventListener('change', appData.checkSalaryAmount);
         start.addEventListener('click', appData.start);
 
         incomePlus.addEventListener('click', appData.addIncomeBlock);
