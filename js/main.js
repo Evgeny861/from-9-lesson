@@ -190,7 +190,7 @@ let start = document.getElementById('start'),
         },
         };
         periodSelect.addEventListener('input', appData.getCounterPeriod);
-        salaryAmount.addEventListener('change', appData.checkSalaryAmount);
+        salaryAmount.addEventListener('input', appData.checkSalaryAmount);
         start.addEventListener('click', appData.start);
 
         incomePlus.addEventListener('click', appData.addIncomeBlock);
