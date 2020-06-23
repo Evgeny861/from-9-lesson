@@ -196,6 +196,15 @@ let start = document.getElementById('start'),
         incomePlus.addEventListener('click', appData.addIncomeBlock);
         expensesPlus.addEventListener('click', appData.addExpensesBlock);
 
+        
+        
+        let range = function(){
+            let periodAmount = document.querySelector('.period-amount');
+        periodAmount.textContent = this.value;
+            
+        };
+        periodSelect.addEventListener('input', range);
+        
         // for (let key in appData) {
         //console.log(`Наша программа включает в себя данные: ${key} : ${appData[key]}`);
     // }
@@ -206,6 +215,7 @@ let start = document.getElementById('start'),
         //console.log(`Цель будет достигнута через ${Math.round(appData.getTargetMonth())} месяцев`);
         
         //console.log(appData.getStatusIncome());
+        
         
         for (let symbol of appData.addExpenses) {
         symbol = symbol.charAt(0).toUpperCase() + symbol.substring(1);
