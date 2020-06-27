@@ -18,6 +18,7 @@ let start = document.getElementById('start'),
     targetMonthValue = result.getElementsByClassName('target_month-value')[0],
     salaryAmount = document.querySelector('.salary-amount'),
     incomeItems = document.querySelectorAll('.income-items'),
+    incomeItem = document.querySelector('.income-items'),
     incomeTitle = document.querySelectorAll('.income-title')[1],
     incomeAmount = document.querySelector('.income-amount'),
     additionalIncomeData1 = document.querySelectorAll('.additional_income-item')[0],
@@ -30,9 +31,10 @@ let start = document.getElementById('start'),
     additionalExpensesItem = document.querySelector('.additional_expenses-item'),
     targetAmount = document.querySelector('.target-amount'),
     periodSelect = document.querySelector('.period-select'),
-    expensesAmountValue = document.querySelector('.expenses-amount');    
-    
-    
+    expensesAmountValue = document.querySelector('.expenses-amount'),   
+    depositCheckmark = document.querySelector('.deposit-checkmark'),
+    depositCheckmarkClone = depositCheckmark.cloneNode(),
+    depositLabel = document.querySelector('.deposit-label');
     
 
     let isNumber = function(n) {
@@ -235,20 +237,24 @@ let start = document.getElementById('start'),
         }, 
         cancelRemoveData: function(){          
             expensesItem.forEach(function(item){
-                let expensesItems = document.querySelectorAll('.expenses-items');
-                if(expensesItems.length > 1){
+                // let expensesItems = document.querySelectorAll('.expenses-items');
+                if(expensesItem.length > 1){
                     item.remove();
+                    expensesItem = document.querySelectorAll('.expenses-items');
                     document.querySelector('.expenses-amount').value = '';
                     document.querySelectorAll('.expenses-title')[1].value = '';
-                    
+                    expensesPlus.style.display = 'block';
                 }
             }, appData);
             incomeItems.forEach(function(item){
-                let incomeItems = document.querySelectorAll('.income-items');
+                // let incomeItems = document.querySelectorAll('.income-items');
                 if(incomeItems.length > 1){
                     item.remove();
+                    incomeItems = document.querySelectorAll('.income-items');
                     document.querySelectorAll('.income-title')[1].value = '';
                     document.querySelector('.income-amount').value = '';
+                    incomePlus.style.display = 'block';
+                    
                 }
             }, appData);
             
@@ -286,6 +292,8 @@ let start = document.getElementById('start'),
                 start.style.display = 'block';
                 cancel.style.display = 'none';
                 appData.showResult();
+                targetMonthValue.value = "";
+                
         }
 
         
@@ -320,4 +328,3 @@ let start = document.getElementById('start'),
         symbol = symbol.charAt(0).toUpperCase() + symbol.substring(1);
         result += symbol + ', ';
         }
-        
