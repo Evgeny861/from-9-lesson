@@ -173,8 +173,8 @@ let start = document.getElementById('start'),
                 
             },
         getBudget: function () {
-                    appData.budgetMonth = +this.budget + this.incomeMonth - +this.expensesMonth;
-                    appData.budgetDay = Math.ceil(+this.budgetMonth / 30);
+                    this.budgetMonth = +this.budget + this.incomeMonth - +this.expensesMonth;
+                    this.budgetDay = Math.ceil(+this.budgetMonth / 30);
                     
                     return  Number(this.budget) - Number(this.expensesMonth);
                     
@@ -195,15 +195,15 @@ let start = document.getElementById('start'),
                         }
         },
         getInfoDeposit: function() {
-            if(appData.deposit){
+            if(this.deposit){
                 do {
-                appData.percentDeposit  = prompt('Какой годовой процент?', 5);
+                this.percentDeposit  = prompt('Какой годовой процент?', 5);
                 }
-                while (!isNumber(appData.percentDeposit));
+                while (!isNumber(this.percentDeposit));
                 do {
-                appData.percentDeposit  = prompt('Какая сумма заложена?', 10000);
+                this.percentDeposit  = prompt('Какая сумма заложена?', 10000);
                 }
-                while (!isNumber(appData.percentDeposit));
+                while (!isNumber(this.percentDeposit));
             }
         },
         calcSaveMoney: function(){
@@ -234,6 +234,8 @@ let start = document.getElementById('start'),
             targetAmount.setAttribute("readonly", "readonly");
             start.style.display = 'none';
             cancel.style.display = 'block';
+            expensesPlus.setAttribute("disabled", "disabled");
+            incomePlus.setAttribute("disabled", "disabled");
         }, 
         cancelRemoveData: function(){          
             expensesItem.forEach(function(item){
@@ -293,7 +295,8 @@ let start = document.getElementById('start'),
                 cancel.style.display = 'none';
                 appData.showResult();
                 targetMonthValue.value = "";
-                
+                expensesPlus.removeAttribute("disabled", "disabled");
+                incomePlus.removeAttribute("disabled", "disabled");
         }
 
         
