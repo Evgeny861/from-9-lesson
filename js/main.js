@@ -334,10 +334,6 @@ let start = document.getElementById('start'),
             incomePlus.addEventListener('click', this.addIncomeBlock.bind(_this));
             expensesPlus.addEventListener('click', this.addExpensesBlock.bind(_this));
 
-            for (let symbol of appData.addExpenses) {
-            symbol = symbol.charAt(0).toUpperCase() + symbol.substring(1);
-            result += symbol + ', ';
-            }
         };
 
         AppData.prototype.eventListeners();
