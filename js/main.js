@@ -124,7 +124,6 @@ let start = document.getElementById('start'),
         };
 
         AppData.prototype.getExpenses = function(){
-            
             expensesItem.forEach(function(item){
                 let itemExpenses = item.querySelector('.expenses-title').value;
                 let cashExpenses = +item.querySelector('.expenses-amount').value;
@@ -243,9 +242,32 @@ let start = document.getElementById('start'),
         };
 
         AppData.prototype.buttonStartBlock = function(){
+            expensesItem.forEach(function(item){
+                if(expensesItem.length >= 1){
+                    console.log(item);
+                    console.log( document.querySelector('.expenses-title'));
+                    
+                    item.querySelector('.expenses-title').setAttribute("readonly", "readonly");
+                    item.querySelector('.expenses-amount').setAttribute("readonly", "readonly");
+                }
+            }, this);
+            incomeItems.forEach(function(item){
+                if(incomeItems.length >= 1){
+                    console.log(item);
+                    console.log( document.querySelector('.income-title'));
+                    
+                    item.querySelector('.income-title').setAttribute("readonly", "readonly");
+                    item.querySelector('.income-amount').setAttribute("readonly", "readonly");
+                }
+            }, this);
+            
             salaryAmount.setAttribute("readonly", "readonly");
             incomeAmount.setAttribute("readonly", "readonly");
             incomeTitle.setAttribute("readonly", "readonly");
+            
+            expensesAmountValue.setAttribute("readonly", "readonly");
+            expensesTitle.setAttribute("readonly", "readonly");            
+
             additionalIncomeData1.setAttribute("readonly", "readonly");
             additionalIncomeData2.setAttribute("readonly", "readonly");
             expensesAmountValue.setAttribute("readonly", "readonly");
@@ -289,15 +311,17 @@ let start = document.getElementById('start'),
             expensesTitle.value = "";
             additionalExpensesItem.value = "";
             targetAmount.value = "";
+            
             salaryAmount.removeAttribute("readonly", "readonly");
             incomeAmount.removeAttribute("readonly", "readonly");
-            incomeTitle.removeAttribute("readonly", "readonly");
+            document.querySelectorAll('.income-title')[1].removeAttribute("readonly", "readonly");
             additionalIncomeData1.removeAttribute("readonly", "readonly");
             additionalIncomeData2.removeAttribute("readonly", "readonly");
             expensesAmountValue.removeAttribute("readonly", "readonly");
             expensesTitle.removeAttribute("readonly", "readonly");
             additionalExpensesItem.removeAttribute("readonly", "readonly");
             targetAmount.removeAttribute("readonly", "readonly");
+            
                 this.budget = 0;
                 this.budgetDay = 0;
                 this.budgetincome = 0;
@@ -339,4 +363,4 @@ let start = document.getElementById('start'),
         appData.eventListeners();
         
 
-            
+        
