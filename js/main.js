@@ -37,12 +37,7 @@ let start = document.getElementById('start'),
     depositLabel = document.querySelector('.deposit-label');
     
 
-    let isNumber = function(n) {
-        return !isNaN(parseFloat(n)) && isFinite(n);
-        };
-        let isString =  function(n) {
-        return isNaN(parseFloat(n)) && n !== "" && n.trim();
-        };   
+    
         
         const AppData = function(){
             this.budget =  0;
@@ -59,6 +54,7 @@ let start = document.getElementById('start'),
             this.moneyDeposit =0;
             this.period = 0;
         };
+
 
         AppData.prototype.start = function(){
             console.log(this);
@@ -212,6 +208,9 @@ let start = document.getElementById('start'),
         };
 
         AppData.prototype.getInfoDeposit = function() {
+            let isNumber = function(n) {
+                return !isNaN(parseFloat(n)) && isFinite(n);
+            };
             if(this.deposit){
                 do {
                 this.percentDeposit  = prompt('Какой годовой процент?', 5);
@@ -340,6 +339,7 @@ let start = document.getElementById('start'),
             result += symbol + ', ';
             }
         };
+
         AppData.prototype.eventListeners();
 
             
