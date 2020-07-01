@@ -187,9 +187,7 @@ getExpensesMonth() {
 getBudget () {
             const monthDeposit = this.moneyDeposit * (this.percentDeposit / 100);
             this.budgetMonth = +this.budget + this.incomeMonth - +this.expensesMonth + monthDeposit;
-            this.budgetDay = Math.ceil(+this.budgetMonth / 30);
-            console.log(monthDeposit);
-            
+            this.budgetDay = Math.ceil(+this.budgetMonth / 30);            
             return  Number(this.budget) - Number(this.expensesMonth);
             
 }
@@ -218,14 +216,6 @@ getInfoDeposit () {
     if(this.deposit){
         this.percentDeposit  = depositPercent.value;
         this.moneyDeposit = depositAmount.value;
-         console.log(this.percentDeposit);
-        
-        // }
-        // while (!isNumber(this.percentDeposit));
-        // do {
-        // this.percentDeposit  = prompt('Какая сумма заложена?', 10000);
-        // }
-        // while (!isNumber(this.percentDeposit));
     }
 }
 
@@ -268,7 +258,7 @@ buttonStartBlock(){
     depositAmount.setAttribute("readonly", "readonly");
     expensesAmountValue.setAttribute("readonly", "readonly");
     expensesTitle.setAttribute("readonly", "readonly");            
-
+    depositPercent.setAttribute("readonly", "readonly");
     additionalIncomeData1.setAttribute("readonly", "readonly");
     additionalIncomeData2.setAttribute("readonly", "readonly");
     expensesAmountValue.setAttribute("readonly", "readonly");
@@ -279,6 +269,8 @@ buttonStartBlock(){
     cancel.style.display = 'block';
     expensesPlus.setAttribute("disabled", "disabled");
     incomePlus.setAttribute("disabled", "disabled");
+    depositBank.setAttribute('disabled', 'disabled');
+    depositCheck.setAttribute('disabled', 'disabled');
     
 }
 
@@ -326,6 +318,7 @@ cancelRemoveData(){
     targetAmount.removeAttribute("readonly", "readonly");
     depositAmount.removeAttribute("readonly", "readonly");
     depositCheck.checked = false;
+    depositPercent.removeAttribute("readonly", "readonly");
     depositPercent.style.display = 'none';
     depositAmount.style.display = 'none';
     depositBank.style.display = 'none';
@@ -334,7 +327,8 @@ cancelRemoveData(){
     depositBank.value = '';
     periodSelect.value = 1;
     periodAmount.textContent = 1;
-    
+    depositBank.removeAttribute('disabled', 'disabled');
+    depositCheck.removeAttribute('disabled', 'disabled');
         this.budget = 0;
         this.budgetDay = 0;
         this.budgetincome = 0;
@@ -390,7 +384,7 @@ depositPersentValue(){
     depositPercent.value > 100 ? 
     (alert("Введите корректное значение в поле проценты (до 100)"), 
                 start.setAttribute("disabled", "disabled") )
-    : (start.removeAttribute("disabled", "disabled"),console.log(depositPercent.value));
+    : (start.removeAttribute("disabled", "disabled"));
     
     
 }
@@ -410,7 +404,6 @@ eventListeners() {
 
 const appData = new AppData();
 
-console.log(appData);
         
         
 
