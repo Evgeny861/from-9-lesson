@@ -43,6 +43,7 @@ const start = document.getElementById('start'),
         
 class AppData {
     constructor(){
+    start.setAttribute("disabled", "disabled");
     this.budget =  0;
     this.budgetDay = 0;
     this.budgetMonth = 0;
@@ -76,8 +77,9 @@ start (){
 
 finish(){
 
-    this.budget = +salaryAmount.value;
+    
     this.checkSalaryAmount();
+    this.budget = +salaryAmount.value;
     this.getExpenses();
     this.getIncome();
     this.getExpensesMonth();
@@ -233,6 +235,7 @@ getCounterPeriod(){
 checkSalaryAmount(){
     if(salaryAmount.value === ''){
         start.setAttribute("disabled", "disabled");
+        alert('Введите хотя бы месячный доход!!!');
     }else {
         start.removeAttribute("disabled");
     }
@@ -348,6 +351,7 @@ cancelRemoveData(){
         targetMonthValue.value = "";
         expensesPlus.removeAttribute("disabled", "disabled");
         incomePlus.removeAttribute("disabled", "disabled");
+        start.setAttribute("disabled", "disabled");
 }
 changePersent(){
     const valueSelect = this.value;
