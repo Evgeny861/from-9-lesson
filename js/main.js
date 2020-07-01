@@ -35,7 +35,8 @@ const start = document.getElementById('start'),
     depositCheckmark = document.querySelector('.deposit-checkmark'),
     depositCheckmarkClone = depositCheckmark.cloneNode(),
     depositLabel = document.querySelector('.deposit-label'),
-    depositBank = document.querySelector('.deposit-bank');
+    depositBank = document.querySelector('.deposit-bank'),
+    periodAmount = document.querySelector('.period-amount');
     
 
     
@@ -331,6 +332,8 @@ cancelRemoveData(){
     depositPercent.value = '';
     depositAmount.value = '';
     depositBank.value = '';
+    periodSelect.value = 1;
+    periodAmount.textContent = 1;
     
         this.budget = 0;
         this.budgetDay = 0;
@@ -384,8 +387,11 @@ depositHandler(){
 }
 
 depositPersentValue(){
-    depositPercent.value > 100 ? alert('"Введите корректное значение в поле проценты"') 
-    : console.log(depositPercent.value);
+    depositPercent.value > 100 ? 
+    (alert("Введите корректное значение в поле проценты (до 100)"), 
+                start.setAttribute("disabled", "disabled") )
+    : (start.removeAttribute("disabled", "disabled"),console.log(depositPercent.value));
+    
     
 }
 
@@ -397,7 +403,7 @@ eventListeners() {
     incomePlus.addEventListener('click', this.addIncomeBlock.bind(this));
     expensesPlus.addEventListener('click', this.addExpensesBlock.bind(this));
     depositCheck.addEventListener('change', this.depositHandler.bind(this));
-    
+    depositPercent.addEventListener('input', this.depositPersentValue.bind(this));
 }
 }
 
