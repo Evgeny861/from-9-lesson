@@ -29,18 +29,17 @@ const myLesson = [
     {lesson: 16, type: 'additional', points: 7}
 ];
 
-let foo = function(){
+console.log(myLesson);
+
+
     for (let i = 0; i < myLesson.length; i ++) {
-        if(myLesson[i].type === 'additional'){
-            
-            myLesson.splice(i, 1);
-            
-        }
+        myLesson[i].type === 'additional'  ?
+        (myLesson.splice(i, 1),
+            i-- ) : 
+        (myLesson[i].points = myLesson[i].points / 2 );
     }
-    console.log(myLesson[0].points);
+    console.log(myLesson.points);
     
-};
-foo();
 // const map = new Map();
 
 // function degree(){
