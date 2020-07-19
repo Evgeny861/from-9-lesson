@@ -84,11 +84,21 @@ let start = document.getElementById('start'),
         addIncomeBlock: function(){
             let cloneIncomeItem = incomeItems[0].cloneNode(true);            
             incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);            
-            incomeItems = document.querySelectorAll('.income-items');            
+            incomeItems = document.querySelectorAll('.income-items');    
+            console.log(incomeItems);   
             if(incomeItems.length === 3){
                 incomePlus.style.display = 'none';
             }
-            
+            if (incomeItems.length === 2 ){
+            for (let i = 0; i < incomeItems[1].querySelectorAll('input').length; i++){
+                incomeItems[1].querySelectorAll('input')[i].value = ''; 
+            }
+            }
+            if (incomeItems.length === 3){
+            for (let i = 0; i < incomeItems[1].querySelectorAll('input').length; i++){
+                incomeItems[2].querySelectorAll('input')[i].value = ''; 
+            }
+        }            
         },
         getExpenses: function(){
             expensesItem.forEach(function(item){
@@ -197,18 +207,6 @@ let start = document.getElementById('start'),
         expensesPlus.addEventListener('click', appData.addExpensesBlock);
 
         
-        
-        
-        // for (let key in appData) {
-        //console.log(`Наша программа включает в себя данные: ${key} : ${appData[key]}`);
-    // }
-        // appData.asking();
-        // appData.getInfoDeposit();
-        //console.log(`Расходы за месяц равны ${appData.getExpensesMonth()}`);
-        
-        //console.log(`Цель будет достигнута через ${Math.round(appData.getTargetMonth())} месяцев`);
-        
-        //console.log(appData.getStatusIncome());
         
         
         for (let symbol of appData.addExpenses) {
