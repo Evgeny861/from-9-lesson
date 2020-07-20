@@ -402,6 +402,23 @@ eventListeners() {
     expensesPlus.addEventListener('click', this.addExpensesBlock.bind(this));
     depositCheck.addEventListener('change', this.depositHandler.bind(this));
     depositPercent.addEventListener('input', this.depositPersentValue.bind(this));
+    
+    let inputs = data.querySelectorAll('input');
+    for(let input of inputs) {        
+        if (input.getAttribute("placeholder")){
+            if (input.getAttribute("placeholder") === 'Сумма') {
+                input.addEventListener('input', () => {
+                input.value = input.value.replace(/[^\d+]/, '');
+                })
+            } 
+            if (input.getAttribute('placeholder') === 'Наименование' || input.getAttribute('placeholder') === 'название'){
+                input.addEventListener('input', () => {
+                    input.value = input.value.replace(/[^А-Яа-яёЁ\s,]/, '');
+                })
+            }
+            
+        }
+    }
 }
 }
 
